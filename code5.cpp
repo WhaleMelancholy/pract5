@@ -287,14 +287,15 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	Book** books = NULL;
-//	Book** readBooks = NULL;
+	Book** readBooks = NULL;
 	int leng = 0;
 
 	int punkt = 0;
 	int punkt1 = 0;
 	int punkt3 = 0;
 
-
+	int lengAdd = 0;
+	
 	do
 	{
 		punkt = menu();
@@ -340,9 +341,16 @@ int main()
 					delete[] books;
 				}
 				FILE*  file = fopen("C:\\Users\\Asus\\source\\repos\\res\\data.txt", "r");
-				books = readFromFile(file, leng);
-				fclose(file);
-				printf("Данные были успешно считаны\n");
+				if (file == NULL)
+				{
+					printf("Файла не существует\n");
+				}
+				else
+				{
+					books = readFromFile(file, leng);
+					fclose(file);
+					printf("Данные были успешно считаны\n");
+				}
 			}
 			getchar();
 			system("cls");
